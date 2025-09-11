@@ -31,6 +31,10 @@ module RubyLLM
                   :model_registry_class,
                   # Rails integration
                   :use_new_acts_as,
+                  # Default model settings
+                  :default_temperature,
+                  :default_thinking,
+                  :default_thinking_budget,
                   # Connection configuration
                   :request_timeout,
                   :max_retries,
@@ -58,6 +62,10 @@ module RubyLLM
 
       @model_registry_class = 'Model'
       @use_new_acts_as = false
+
+      # Default model settings
+      @default_thinking = false
+      @default_thinking_budget = 2048
 
       @log_file = $stdout
       @log_level = ENV['RUBYLLM_DEBUG'] ? Logger::DEBUG : Logger::INFO

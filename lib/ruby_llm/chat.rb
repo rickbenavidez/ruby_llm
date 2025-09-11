@@ -16,6 +16,8 @@ module RubyLLM
       @config = context&.config || RubyLLM.config
       model_id = model || @config.default_model
       with_model(model_id, provider: provider, assume_exists: assume_model_exists)
+      @thinking = @config.default_thinking
+      @thinking_budget = @config.default_thinking_budget
       @temperature = nil
       @messages = []
       @tools = {}
@@ -64,6 +66,18 @@ module RubyLLM
 
     def with_temperature(temperature)
       @temperature = temperature
+      self
+    end
+
+    def with_thinking(thinking: true, budget: nil, temperature: 1)
+      raise UnsupportedThinkingError, "Model #{@model.id} doesn't support thinking" if thinking && !@model.thinking?
+
+      @thinking = thinking
+
+      # Most thinking models require set temperature so force it 1 here, however allowing override via param.
+      @temperature = temperature
+      @thinking_budget = budget if budget
+
       self
     end
 
@@ -127,6 +141,8 @@ module RubyLLM
         tools: @tools,
         temperature: @temperature,
         model: @model,
+        thinking: @thinking,
+        thinking_budget: @thinking_budget,
         params: @params,
         headers: @headers,
         schema: @schema,
@@ -151,6 +167,10 @@ module RubyLLM
       else
         response
       end
+    end
+
+    def thinking?
+      @thinking
     end
 
     def add_message(message_or_attributes)

@@ -126,7 +126,8 @@
       ]
     },
     "capabilities": [
-      "function_calling"
+      "function_calling",
+      "thinking"
     ],
     "pricing": {
       "text_tokens": {
@@ -228,7 +229,8 @@
       ]
     },
     "capabilities": [
-      "function_calling"
+      "function_calling",
+      "thinking"
     ],
     "pricing": {
       "text_tokens": {
@@ -260,7 +262,8 @@
       ]
     },
     "capabilities": [
-      "function_calling"
+      "function_calling",
+      "thinking"
     ],
     "pricing": {
       "text_tokens": {
@@ -292,7 +295,8 @@
       ]
     },
     "capabilities": [
-      "function_calling"
+      "function_calling",
+      "thinking"
     ],
     "pricing": {
       "text_tokens": {

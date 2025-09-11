@@ -8,6 +8,7 @@ RSpec.describe RubyLLM::Models do
   let(:models_json_path) { described_class.models_file }
 
   it 'validates that models.json conforms to the schema' do
+    puts "Validating models.json against schema: #{models_json_path} #{schema_path}"
     models_data = JSON.parse(File.read(models_json_path))
 
     validation_errors = JSON::Validator.fully_validate(schema_path, models_data)

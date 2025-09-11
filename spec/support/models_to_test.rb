@@ -45,3 +45,14 @@ EMBEDDING_MODELS = [
   { provider: :mistral, model: 'mistral-embed' },
   { provider: :vertexai, model: 'text-embedding-004' }
 ].freeze
+
+THINKING_MODELS = [
+  { model: 'claude-3-7-sonnet', provider: 'anthropic' },
+  { model: 'claude-sonnet-4', provider: 'anthropic' },
+  { model: 'claude-opus-4', provider: 'anthropic' }
+].freeze
+
+NON_THINKING_MODELS = [
+  { model: 'claude-3-haiku', provider: 'anthropic' },
+  { model: 'claude-3-sonnet', provider: 'anthropic' }
+].freeze

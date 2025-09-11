@@ -27,7 +27,8 @@ module RubyLLM
   class ServerError < Error; end
   class ServiceUnavailableError < Error; end
   class UnauthorizedError < Error; end
-
+  class UnsupportedThinkingError < StandardError; end
+  
   # Faraday middleware that maps provider-specific API errors to RubyLLM errors.
   class ErrorMiddleware < Faraday::Middleware
     def initialize(app, options = {})

@@ -7,6 +7,7 @@ module RubyLLM
 
     def initialize
       @content = +''
+      @thinking = +''
       @tool_calls = {}
       @input_tokens = 0
       @output_tokens = 0
@@ -21,6 +22,7 @@ module RubyLLM
         accumulate_tool_calls chunk.tool_calls
       else
         @content << (chunk.content || '')
+        @thinking << (chunk.thinking || '')
       end
 
       count_tokens chunk
@@ -33,6 +35,7 @@ module RubyLLM
         content: content.empty? ? nil : content,
         model_id: model_id,
         tool_calls: tool_calls_from_stream,
+        thinking: @thinking.empty? ? nil : @thinking,
         input_tokens: @input_tokens.positive? ? @input_tokens : nil,
         output_tokens: @output_tokens.positive? ? @output_tokens : nil,
         raw: response
